@@ -134,7 +134,7 @@ if (env.SLACK_CLIENT_ID && env.SLACK_CLIENT_SECRET) {
     }),
     async (ctx) => {
       const { code, state, error } = ctx.request.query;
-      const { user } = ctx.state;
+      const { user } = ctx.state.auth;
       assertPresent(code || error, "code is required");
 
       if (error) {
@@ -197,7 +197,7 @@ if (env.SLACK_CLIENT_ID && env.SLACK_CLIENT_SECRET) {
     }),
     async (ctx) => {
       const { code, error, state } = ctx.request.query;
-      const { user } = ctx.state;
+      const { user } = ctx.state.auth;
       assertPresent(code || error, "code is required");
 
       const collectionId = state;
